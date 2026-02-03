@@ -1,0 +1,50 @@
+<!DOCTYPE CrossStudio_Project_File>
+<solution Name="00drv" target="8" version="2">
+  <configuration
+    Name="Common"
+    build_output_directory="Output/$(BuildTarget)/$(Configuration)/Obj"
+    build_output_file_name="$(OutDir)/$(ProjectName)-$(BuildTarget)$(LIB)"
+    c_user_include_directories="$(SolutionDir);$(PackagesDir)/nRF/Device/Include;$(PackagesDir)/CMSIS_5/CMSIS/Core/Include" />
+  <project Name="00drv_clock">
+    <configuration
+      Name="Common"
+      project_directory="mr_clock"
+      project_type="Library" />
+    <file file_name="mr_clock.c" />
+    <file file_name="../mr_clock.h" />
+  </project>
+  <project Name="00drv_mr_gpio">
+    <configuration
+      Name="Common"
+      project_directory="mr_gpio"
+      project_type="Library" />
+    <file file_name="mr_gpio.c" />
+    <file file_name="../mr_gpio.h" />
+  </project>
+  <project Name="00drv_mr_timer_hf">
+    <configuration
+      Name="Common"
+      project_dependencies="00drv_clock"
+      project_directory="mr_timer_hf"
+      project_type="Library" />
+    <file file_name="mr_timer_hf.c" />
+    <file file_name="../mr_timer_hf.h" />
+  </project>
+  <project Name="00drv_mr_radio">
+    <configuration
+      Name="Common"
+      project_dependencies="00drv_clock(00drv);00drv_mr_timer_hf(00drv)"
+      project_directory="mr_radio"
+      project_type="Library" />
+    <file file_name="mr_radio.c" />
+    <file file_name="../mr_radio.h" />
+  </project>
+  <project Name="00drv_mr_rng">
+    <configuration
+      Name="Common"
+      project_directory="mr_rng"
+      project_type="Library" />
+    <file file_name="mr_rng.c" />
+    <file file_name="../mr_rng.h" />
+  </project>
+</solution>
